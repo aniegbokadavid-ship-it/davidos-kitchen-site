@@ -1249,7 +1249,116 @@
       .form-row{ grid-template-columns:1fr; }
       .floating-whatsapp{ display:grid; }
     }
-  </style>
+  
+
+    /* Mobile refinement: compact menu cards without changing desktop layout. */
+    @media (max-width: 600px) {
+      .products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 16px;
+        align-items: stretch;
+      }
+      .product-card {
+        min-width: 0;
+        border-radius: 16px;
+      }
+      .product-image {
+        height: clamp(104px, 31vw, 132px);
+      }
+      .availability {
+        top: 7px;
+        left: 7px;
+        padding: 4px 6px;
+        font-size: .58rem;
+      }
+      .product-content {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px 9px 11px;
+        min-height: 148px;
+      }
+      .category-tag {
+        font-size: .56rem;
+        letter-spacing: .045em;
+        margin-bottom: 5px;
+        line-height: 1.25;
+      }
+      .product-name {
+        font-size: .88rem;
+        line-height: 1.25;
+        letter-spacing: -.025em;
+        overflow-wrap: anywhere;
+      }
+      .product-desc {
+        font-size: .72rem;
+        line-height: 1.4;
+        margin: 6px 0 9px;
+        min-height: 0;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        overflow: hidden;
+      }
+      .product-meta {
+        margin-top: auto;
+        padding-top: 7px;
+        gap: 6px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .price {
+        font-size: .94rem;
+        letter-spacing: -.035em;
+      }
+      .price small { font-size: .62rem; margin-left: 2px; }
+      .mini-btn {
+        padding: 7px 8px;
+        border-radius: 9px;
+        font-size: .68rem;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+      .filter-group, .menu-controls {
+        gap: 8px;
+        max-width: 100%;
+      }
+      .filter-group {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 2px 1px 8px;
+      }
+      .filter-group::-webkit-scrollbar { display: none; }
+      .filter-btn { flex: 0 0 auto; padding: 9px 12px; font-size: .78rem; }
+      .search-wrap { height: 44px; padding: 0 12px; }
+      .floating-whatsapp {
+        right: max(14px, env(safe-area-inset-right));
+        bottom: max(14px, env(safe-area-inset-bottom));
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        font-size: 0;
+        box-shadow: 0 8px 22px rgba(37,211,102,.3);
+        border: 2px solid rgba(255,255,255,.9);
+      }
+      .floating-whatsapp svg { width: 27px; height: 27px; display: block; }
+    }
+
+    @media (max-width: 360px) {
+      .products-grid { gap: 9px; }
+      .product-content { padding: 9px 8px 10px; }
+      .product-name { font-size: .82rem; }
+      .product-desc { font-size: .68rem; }
+      .price { font-size: .86rem; }
+      .mini-btn { font-size: .64rem; padding: 7px 6px; }
+    }
+</style>
 </head>
 <body>
   <header class="header">
@@ -1775,7 +1884,9 @@
     </div>
   </footer>
 
-  <button class="floating-whatsapp show" id="floatingWhatsApp" type="button" aria-label="Order on WhatsApp">✆</button>
+  <button class="floating-whatsapp show" id="floatingWhatsApp" type="button" aria-label="Order on WhatsApp" title="Chat with us on WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.04 3.2A12.72 12.72 0 0 0 5.1 22.4L3.4 28.7l6.45-1.69A12.8 12.8 0 1 0 16.04 3.2Zm0 23.25c-2.02 0-4-.54-5.72-1.57l-.41-.24-3.83 1 1.02-3.73-.27-.43a10.48 10.48 0 1 1 9.21 4.97Zm5.75-7.85c-.31-.16-1.84-.91-2.13-1.02-.29-.1-.5-.16-.71.16-.21.31-.81 1.02-.99 1.23-.18.21-.37.24-.68.08-.31-.16-1.31-.48-2.5-1.53-.92-.82-1.54-1.84-1.72-2.15-.18-.31-.02-.48.14-.64.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.7-.97-2.32-.25-.6-.51-.52-.71-.53h-.6c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.6s1.13 3.02 1.29 3.23c.16.21 2.22 3.39 5.37 4.75.75.32 1.33.51 1.78.65.75.24 1.43.2 1.97.12.6-.09 1.84-.75 2.1-1.49.26-.73.26-1.36.18-1.49-.08-.13-.29-.21-.6-.37Z"/></svg>
+  </button>
 
   <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
     <div class="cart-header">
